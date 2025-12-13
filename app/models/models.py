@@ -20,7 +20,7 @@ class Journal(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
 
-    totle_encrypted = Column(Text, nullable=False)
+    title_encrypted = Column(Text, nullable=False)
     content_encrypted = Column(Text, nullable=False)
     iv = Column(String, nullable=False)
 
