@@ -1,5 +1,9 @@
 from fastapi import FastAPI
-from app.routers import auth
+from app.routers import auth, journals
+from app.core.database import engine
+from app.models import models
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="serenaFlow API",
@@ -8,6 +12,8 @@ app = FastAPI(
 )
 
 app.include_router(auth.router)
+app.include_router(journals.router)
+
 
 @app.get("/")
 def read_root():
