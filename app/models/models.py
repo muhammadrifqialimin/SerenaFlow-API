@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Text, JSON
 from sqlalchemy.orm import relationship
+from datetime import datetime
 from sqlalchemy.sql import func
 from app.core.database import Base
 
@@ -33,8 +34,13 @@ class MoodLog(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
+    
+
     score = Column(Integer, nullable=False)
-    tags = Column(JSON, nullable=True)
+    
+
+    tags = Column(JSON, nullable=True) 
+    
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     owner = relationship("User", back_populates="moods")
