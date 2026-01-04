@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import auth, journals
+from app.routers import auth, journals, moods
 from app.core.database import engine
 from app.models import models
 
@@ -13,6 +13,7 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(journals.router)
+app.include_router(moods.router)
 
 
 @app.get("/")
