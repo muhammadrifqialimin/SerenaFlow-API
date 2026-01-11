@@ -31,3 +31,31 @@ def get_moods(
     current_user: models.User = Depends(get_current_user)
 ):
     return db.query(models.MoodLog).filter(models.MoodLog.user_id == current_user.id).all()
+
+@router.get("/stats", response_model=schemas.MoodStats)
+def get_mood_stats(
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    user_moods = db.query(models.MoodLog).filter(models.MoodLog.user_id == current_user.id).all()
+    
+    if not user_moods:
+        return schemas.MoodStats(
+            total_logs=0,
+            average_score=0.0,
+            recent_trend=[]
+        )
+    
+    total = len(user_moods)
+    
+    total_score = sum(mood.score for mood in user_moods)
+    average = total_score / total
+    
+    sorted_moods = sorted(user_moods, key=lambda x: x.created_at, reverse=True)
+    trend = [m.score for m in sorted_moods[:5]]
+    
+    return schemas.MoodStats(
+        total_logs=total,
+        average_score=round(average, 1),
+        recent_trend=trend
+    )

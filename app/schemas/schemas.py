@@ -46,3 +46,8 @@ class MoodOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class MoodStats(BaseModel):
+    total_logs: int
+    average_score: float
+    recent_trend: List[int]
