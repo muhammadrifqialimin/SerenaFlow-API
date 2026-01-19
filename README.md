@@ -113,7 +113,7 @@ Swagger UI Documentation: `http://127.0.0.1:8000/docs`
 ## 🔌 API Documentation
 You can test these endpoints using Swagger UI, Postman, or cURL.
 
-## 🔐 Authentication
+### 🔐 Authentication
 
 1. **Register User**
 
@@ -132,7 +132,7 @@ You can test these endpoints using Swagger UI, Postman, or cURL.
 - URL: `POST /auth/login`
 Response: Returns a `access_token`. Use this token for subsequent requests.
 
-## 📖 Encrypted Journals
+### 📖 Encrypted Journals
 
 1. **Create Journal**
 
@@ -153,7 +153,7 @@ Response: Returns a `access_token`. Use this token for subsequent requests.
 - Auth: Bearer Token
 - Description: Returns list of journals with decrypted content.
 
-## 🎭 Mood Tracker & Analytics
+### 🎭 Mood Tracker & Analytics
 
 1. **Log Mood**
 
