@@ -25,6 +25,7 @@ class Journal(Base):
     content_encrypted = Column(Text, nullable=False)
     iv = Column(String, nullable=False)
 
+    sentiment = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     owner = relationship("User", back_populates="journals")
