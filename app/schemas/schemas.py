@@ -29,6 +29,7 @@ class JournalOut(BaseModel):
     id: int
     title: str
     content: str
+    sentiment: Optional[str] = "Neutral"
     created_at: datetime
 
 class Config:
