@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.routers import auth, journals, moods
 from app.core.database import engine
 from app.models import models
+from app.core.scheduler import start_scheduler
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -10,6 +11,10 @@ app = FastAPI(
     description="API Kesehatan Mental & Jurnal Terenskripsi",
     version="1.0.0"
 )
+
+@app.on_event("startup")
+async def startup_event():
+    start_scheduler()
 
 app.include_router(auth.router)
 app.include_router(journals.router)
